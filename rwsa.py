@@ -1,7 +1,8 @@
 from ftplib import FTP
 import datetime
+from os import path
 
-def login_ftp(url, username, password, working_dir):
+def login_ftp(url, username, password, working_dir, output_dir):
 	ftp = FTP(url)
 	ftp.login(user=username, passwd=password)
 	ftp.cwd(working_dir)
@@ -20,9 +21,10 @@ def login_ftp(url, username, password, working_dir):
 				most_recent_file = x
 		except:
 			pass
-	print(most_recent_date, most_recent_file)
+			
 	filename = most_recent_file
-	localfile = open(filename, 'wb')
+	out_file = path.join(output_dir, filename)
+	localfile = open(out_file, 'wb')
 
 	ftp.retrbinary("RETR " + filename, localfile.write, 1024)
 	ftp.quit()
