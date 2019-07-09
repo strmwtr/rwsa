@@ -21,10 +21,12 @@ def login_ftp(url, username, password, working_dir, output_dir):
 				most_recent_file = x
 		except:
 			pass
-			
+
 	filename = most_recent_file
 	out_file = path.join(output_dir, filename)
 	localfile = open(out_file, 'wb')
 
 	ftp.retrbinary("RETR " + filename, localfile.write, 1024)
 	ftp.quit()
+
+	return out_file
