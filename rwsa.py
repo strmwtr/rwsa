@@ -53,11 +53,8 @@ def grab_acsa_data(url, username, password, working_dir, output_dir):
 			except:
 				pass
 		gdb = path.join(output_dir,most_recent_file)
-		print(gdb)
 		mkdir(gdb)
-		print(ftp.pwd())
 		ftp.cwd(most_recent_file)
-		print(ftp.pwd())
 		for x in ftp.nlst():
 			filename = x
 			out_file = path.join(gdb, x)
